@@ -22,20 +22,14 @@ public class BillService {
     }
 
     public void addBill(Bill bill, MyUser myUser ) {
-        Membership membership=membershipRepository.findByUserID(myUser.getID());
-        if (!(membership.getName().equals("FINANCE"))) {
-            throw new ApiException("un");
-        }
+        bill.setClubID(myUser.getClubID());
         bill.setStatus("IN PROGRESS");
         billRepository.save(bill);
     }
 
     public void updateBill(Bill bill, Integer billID,MyUser myUser) {
-        Membership membership=membershipRepository.findByUserID(myUser.getID());
-        if (!(membership.getName().equals("FINANCE"))) {
-            throw new ApiException("un");
-        }
-        Bill oldBill=billRepository.findByIDAndClubID(billID, membership.getClubID());
+
+        Bill oldBill=billRepository.findByIDAndClubID(billID, myUser.getClubID());
         if (oldBill == null) {
             throw new ApiException("billID not found");
         }
@@ -48,11 +42,8 @@ public class BillService {
     }
 
     public void deleteBill(Integer billID,MyUser myUser) {
-        Membership membership=membershipRepository.findByUserID(myUser.getID());
-        if (!(membership.getName().equals("FINANCE"))) {
-            throw new ApiException("un");
-        }
-        Bill bill=billRepository.findByIDAndClubID(billID, membership.getClubID());
+
+        Bill bill=billRepository.findByIDAndClubID(billID, myUser.getClubID());
         if (bill == null) {
             throw new ApiException("billID not found");
         }
@@ -60,11 +51,8 @@ public class BillService {
     }
 
     public void updateBillStatus(UpdateBillStatus updateBillStatus,MyUser myUser) {
-        Membership membership=membershipRepository.findByUserID(myUser.getID());
-        if (!(membership.getName().equals("LEADER"))) {
-            throw new ApiException("un");
-        }
-        Bill bill=billRepository.findByIDAndClubID(updateBillStatus.getBillID(), membership.getClubID());
+
+        Bill bill=billRepository.findByIDAndClubID(updateBillStatus.getBillID(), myUser.getClubID());
         if (bill == null) {
             throw new ApiException("billID not found");
         }
@@ -77,18 +65,10 @@ public class BillService {
     }
 
     public Bill findBillByID(Integer billID,MyUser myUser) {
-        Membership membership=membershipRepository.findByUserID(myUser.getID());
-        if (!(membership.getName().equals("FINANCE"))||!(membership.getName().equals("Leader"))) {
-            throw new ApiException("un");
-        }
-        return billRepository.findBillByID(billID);
+        return billRepository.findByIDAndClubID(billID,myUser.getClubID());
     }
 
     public List<Bill> findAllByClubID(MyUser myUser) {
-        Membership membership=membershipRepository.findByUserID(myUser.getID());
-        if (!(membership.getName().equals("FINANCE"))&&!(membership.getName().equals("Leader"))) {
-            throw new ApiException("un");
-        }
         return billRepository.findAllByClubID(myUser.getClubID());
     }
 }

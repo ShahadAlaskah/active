@@ -25,30 +25,31 @@ public class MyUserService {
         myUserRepository.save(myUser);
     }
 
-    public void updateUser(MyUser myUser, Integer userID) {
-        MyUser oldMyUser=myUserRepository.findByID(userID);
+    public void updateUser(MyUser newUser, MyUser myUser) {
+        MyUser oldMyUser=myUserRepository.findByID(myUser.getID());
         if (oldMyUser == null) {
             throw new ApiException("userID not found");
         }
-        oldMyUser.setName(myUser.getName());
-        oldMyUser.setEmail(myUser.getEmail());
-        String hashedPassword=new BCryptPasswordEncoder().encode(myUser.getPassword());
+        oldMyUser.setName(newUser.getName());
+        oldMyUser.setEmail(newUser.getEmail());
+        String hashedPassword=new BCryptPasswordEncoder().encode(newUser.getPassword());
         oldMyUser.setPassword(hashedPassword);
-        oldMyUser.setClubID(myUser.getClubID());
-        oldMyUser.setUsername(myUser.getUsername());
+        oldMyUser.setClubID(newUser.getClubID());
+        oldMyUser.setUsername(newUser.getUsername());
         myUserRepository.save(oldMyUser);
 
     }
 
-    public void deleteUser(Integer userID) {
-        MyUser myUser=myUserRepository.findByID(userID);
-        if (myUser == null) {
+    public void deleteUser(MyUser myUser) {
+        MyUser user=myUserRepository.findByID(myUser.getID());
+        if (user == null) {
             throw new ApiException("userID not found");
         }
-        myUserRepository.delete(myUser);
+        myUserRepository.delete(user);
     }
 
-    public MyUser getUserByID(Integer userID) {
-        return myUserRepository.getById(userID);
+    public MyUser getUserByID(MyUser myUser) {
+
+        return myUserRepository.findByID(myUser.getID());
     }
 }

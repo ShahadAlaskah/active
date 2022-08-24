@@ -20,7 +20,7 @@ public class PermitsController {
     //--------------------------------------------------role admin
     @GetMapping("/get")
     public ResponseEntity<List<Permits>> getPermits(){
-        List<Permits> usersList =permitsService.getPermits();
+        List<Permits> usersList = permitsService.getPermits();
         return ResponseEntity.status(200).body(usersList);
     }
     //--------------------------------------------------role member

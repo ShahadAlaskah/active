@@ -1,6 +1,7 @@
 package com.example.active.service;
 
 import com.example.active.exception.ApiException;
+import com.example.active.model.MyUser;
 import com.example.active.model.Task;
 import com.example.active.repository.TaskRepository;
 import lombok.RequiredArgsConstructor;
@@ -49,5 +50,24 @@ public class TaskService {
 
     public List<Task> findAllByClubID(Integer clubID) {
         return taskRepository.findAllByClubID(clubID);
+    }
+
+    public void reject(Integer taskID, MyUser myUser) {
+        Task task= taskRepository.findByIDAndUserID(taskID, myUser.getID());
+        if (task == null) {
+            throw new ApiException("taskID not found");
+        }
+        task.setStatus("REJECT");
+        taskRepository.save(task);
+    }
+
+    public void completed(Integer taskID, MyUser myUser) {
+        Task task= taskRepository.findByIDAndUserID(taskID, myUser.getID());
+        if (task == null) {
+            throw new ApiException("taskID not found");
+        }
+        task.setStatus("COMPLETE");
+        taskRepository.save(task);
+
     }
 }

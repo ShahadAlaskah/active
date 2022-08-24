@@ -55,44 +55,31 @@ public class MembershipRequestService {
 
 
     public List<MembershipRequest> findAllByClubIDAndStatus(FindAllByClubIDAndStatus findAllByClubIDAndStatus,MyUser myUser) {
-        Membership membership=membershipRepository.findByUserID(myUser.getID());
-        if (!(membership.getName().equals("HR"))) {
-            throw new ApiException("un");
-        }
 
         return membershipRequestRepository.findAllByClubIDAndStatus(findAllByClubIDAndStatus.getClubID(),findAllByClubIDAndStatus.getStatus());
     }
 
     public List<MembershipRequest> findAllByClubIDAndStatusInProgress(Integer clubID,MyUser myUser) {
-        Membership membership=membershipRepository.findByUserID(myUser.getID());
-        if (!(membership.getName().equals("HR"))) {
-            throw new ApiException("un");
-        }
+
         return membershipRequestRepository.findAllByClubIDAndStatus(clubID,"IN PROGRESS");
     }
 
     public void rejectMembershipRequest(Integer membershipRequestID,MyUser myUser) {
-        Membership membership=membershipRepository.findByUserID(myUser.getID());
-        if (!(membership.getName().equals("HR"))) {
-            throw new ApiException("un");
-        }
+
         MembershipRequest membershipRequest=membershipRequestRepository.findByID(membershipRequestID);
         membershipRequest.setStatus("REJECT");
         membershipRequestRepository.save(membershipRequest);
     }
 
     public void acceptMembershipRequest(Integer membershipRequestID,MyUser myUser) {
-        Membership membership=membershipRepository.findByUserID(myUser.getID());
-        if (!(membership.getName().equals("HR"))) {
-            throw new ApiException("un");
-        }
+
         MembershipRequest membershipRequest = membershipRequestRepository.findByID(membershipRequestID);
         membershipRequest.setStatus("ACCEPT");
         membershipRequestRepository.save(membershipRequest);
         //--------------------------------------------------
         MyUser user = myUserRepository.findByID(membershipRequest.getUserID());
         user.setRole("MEMBER");
-        myUserRepository.save(myUser);
+        myUserRepository.save(user);
         //--------------------------------------------------
         Membership membership1=new Membership(null,membershipRequest.getUserID(),membershipRequest.getClubID(),membershipRequest.getName());
         membershipRepository.save(membership1);

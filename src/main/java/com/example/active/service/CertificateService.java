@@ -25,18 +25,11 @@ public class CertificateService {
     }
 
     public void addCertificate(Certificate certificate, MyUser myUser) {
-        Membership membership=membershipRepository.findByUserID(myUser.getID());
-        if (!(membership.getName().equals("HR"))) {
-            throw new ApiException("un");
-        }
         certificateRepository.save(certificate);
     }
 
     public void updateCertificate(Certificate certificate, Integer certificateID,MyUser myUser) {
-        Membership membership=membershipRepository.findByUserID(myUser.getID());
-        if (!(membership.getName().equals("HR"))) {
-            throw new ApiException("un");
-        }
+
         Certificate oldCertificate=certificateRepository.findByID(certificateID);
         if (oldCertificate == null) {
             throw new ApiException("certificateID not found");
@@ -50,10 +43,7 @@ public class CertificateService {
     }
 
     public void deleteCertificate(Integer certificateID,MyUser myUser) {
-        Membership membership=membershipRepository.findByUserID(myUser.getID());
-        if (!(membership.getName().equals("HR"))) {
-            throw new ApiException("un");
-        }
+
         Certificate certificate=certificateRepository.findByID(certificateID);
         if (certificate == null) {
             throw new ApiException("certificateID not found");

@@ -19,29 +19,29 @@ public class MembershipController {
     private final MembershipService membershipService;
 
     //--------------------------------------------------role non
-    @GetMapping("/get")
-    public ResponseEntity<List<Membership>> getMembership(){
-        List<Membership> membershipList =membershipService.getMembership();
-        return ResponseEntity.status(200).body(membershipList);
-    }
+//    @GetMapping("/get")
+//    public ResponseEntity<List<Membership>> getMembership(){
+//        List<Membership> membershipList =membershipService.getMembership();
+//        return ResponseEntity.status(200).body(membershipList);
+//    }
     //--------------------------------------------------role non لان المسول بيضيف مباشره
-    @PostMapping("/add")
-    public ResponseEntity<ApiResponse> addMembership(@RequestBody @Valid Membership membership){
-        membershipService.addMembership(membership);
-        return ResponseEntity.status(200).body(new ApiResponse("membership added",200));
-    }
+//    @PostMapping("/add")
+//    public ResponseEntity<ApiResponse> addMembership(@RequestBody @Valid Membership membership){
+//        membershipService.addMembership(membership);
+//        return ResponseEntity.status(200).body(new ApiResponse("membership added",200));
+//    }
     //--------------------------------------------------role non
-    @PutMapping("/update/{userID}")
-    public ResponseEntity<ApiResponse> updateMembership(@RequestBody @Valid Membership membership,@PathVariable Integer membershipID){
-        membershipService.updateMembership(membership,membershipID);
-        return ResponseEntity.status(200).body(new ApiResponse("membership updated",200));
-    }
+//    @PutMapping("/update/{userID}")
+//    public ResponseEntity<ApiResponse> updateMembership(@RequestBody @Valid Membership membership,@PathVariable Integer membershipID){
+//        membershipService.updateMembership(membership,membershipID);
+//        return ResponseEntity.status(200).body(new ApiResponse("membership updated",200));
+//    }
     //--------------------------------------------------role non
-    @DeleteMapping("/delete/{userID}")
-    public ResponseEntity<ApiResponse> deleteMembership(@PathVariable Integer membershipID){
-        membershipService.deleteMembership(membershipID);
-        return ResponseEntity.status(200).body(new ApiResponse("membership deleted",200));
-    }
+//    @DeleteMapping("/delete/{userID}")
+//    public ResponseEntity<ApiResponse> deleteMembership(@PathVariable Integer membershipID){
+//        membershipService.deleteMembership(membershipID);
+//        return ResponseEntity.status(200).body(new ApiResponse("membership deleted",200));
+//    }
     //-------------------------chan-------------------------role user admin member
     @GetMapping("/findAllByClubID/{clubID}")
     public ResponseEntity<List<Membership>> findAllByClubID(@PathVariable Integer clubID){
