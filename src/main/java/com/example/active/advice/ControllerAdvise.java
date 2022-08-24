@@ -19,4 +19,9 @@ public class ControllerAdvise {
         String message = methodArgumentNotValidException.getFieldError().getDefaultMessage();
         return ResponseEntity.status(400).body(new ApiResponse(message,400));
     }
+    @ExceptionHandler(value = Exception.class)
+    public ResponseEntity exception(Exception exception){
+        String message = exception.getMessage();
+        return ResponseEntity.status(400).body(new ApiResponse(message,400));
+    }
 }

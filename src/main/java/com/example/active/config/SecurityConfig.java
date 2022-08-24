@@ -27,7 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/api/v1/MyUser/register").permitAll()
                 .antMatchers
-                        ("/api/v1/Bill/get","/api/v1/Bill/findBillByID/{billID}"
+                        ("/api/v1/Bill/get"
                                 ,"/api/v1/Certificate/findAllByUserID/{userID}"
                                 ,"/api/v1/Club/add","/api/v1/Club/update/{clubID}","/api/v1/Club/delete/{clubID}"
                                 ,"/api/v1/Collage/add","/api/v1/Collage/update/{collageID}","/api/v1/Collage/delete/{collageID}"
@@ -39,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers
                         (
                                 "/api/v1/Ads/add","/api/v1/Ads/update/{adsID}","/api/v1/Ads/delete/{adsID}"
-                        ,"/api/v1/Bill/add","/api/v1/Bill/update/{billID}","/api/v1/Bill/delete/{billID}","/api/v1/Bill/updateBillStatus","/api/v1/Bill/findBillByID/{billID}","/api/v1/Bill/findAllByClubID"
+                        ,"/api/v1/Bill/add","/api/v1/Bill/update/{billID}","/api/v1/Bill/delete/{billID}","/api/v1/Bill/updateBillStatus","/api/v1/Bill/findAllByClubID"
                         ,"/api/v1/Certificate/add","/api/v1/Certificate/update/{certificateID}","/api/v1/Certificate/delete/{certificateID}","/api/v1/Certificate/findAllByUserID/{userID}"
                                 ,"/api/v1/MembershipRequest/findAllByClubIDAndStatus","/api/v1/MembershipRequest/findAllByClubIDAndStatusInProgress/{clubID}","/api/v1/MembershipRequest/RejectMembershipRequest/{membershipRequestID}","/api/v1/MembershipRequest/acceptMembershipRequest/{membershipRequestID}"
                                         ,"/api/v1/MyUser/update","/api/v1/MyUser/delete","/api/v1/MyUser/getUserByID"
@@ -56,6 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         ,"/api/v1/MyUser/update","/api/v1/MyUser/delete","/api/v1/MyUser/getUserByID"
 
                             ).hasAuthority("USER")
+                .antMatchers("/api/v1/Bill/findBillByID/{billID}").hasAnyAuthority("ADMIN","MEMBER")
                 .anyRequest().authenticated()
                 .and()
                 .logout().logoutUrl("/api/v1/auth/logout")

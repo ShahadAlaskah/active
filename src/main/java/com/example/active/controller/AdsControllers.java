@@ -1,7 +1,6 @@
 package com.example.active.controller;
 
 import com.example.active.dto.ApiResponse;
-import com.example.active.exception.ApiException;
 import com.example.active.model.Ads;
 import com.example.active.model.Membership;
 import com.example.active.model.MyUser;

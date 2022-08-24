@@ -81,7 +81,7 @@ public class BillController {
     public ResponseEntity<?> findBillByID(@PathVariable Integer billID,@AuthenticationPrincipal MyUser myUser){
         Membership membership=membershipRepository.findByUserID(myUser.getID());
         if(membership!=null) {
-            if (!(membership.getName().equals("MARKETING"))||!(membership.getName().equals("LEADER"))) {
+            if (!(membership.getName().equals("FINANCE"))&&!(membership.getName().equals("LEADER"))) {
                 return ResponseEntity.status(403).body(new ApiResponse("Forbidden", 403));
             }
         }
@@ -93,7 +93,7 @@ public class BillController {
     public ResponseEntity<?> findAllByClubID(@AuthenticationPrincipal MyUser myUser){
         Membership membership=membershipRepository.findByUserID(myUser.getID());
         if(membership!=null) {
-            if (!(membership.getName().equals("MARKETING"))||!(membership.getName().equals("LEADER"))) {
+            if (!(membership.getName().equals("FINANCE"))&&!(membership.getName().equals("LEADER"))) {
                 return ResponseEntity.status(403).body(new ApiResponse("Forbidden", 403));
             }
         }

@@ -87,6 +87,7 @@ public class MembershipRequestController {
     public ResponseEntity<ApiResponse> acceptMembershipRequest(@PathVariable Integer membershipRequestID, @AuthenticationPrincipal MyUser myUser){
         Membership membership=membershipRepository.findByUserID(myUser.getID());
         if(membership!=null) {
+
             if (!(membership.getName().equals("HR"))) {
                 return ResponseEntity.status(403).body(new ApiResponse("Forbidden", 403));
             }

@@ -63,7 +63,7 @@ public class CertificateController {
         certificateService.deleteCertificate(certificateID,myUser);
         return ResponseEntity.status(200).body(new ApiResponse("certificate deleted",200));
     }
-    //--------------------------------------------------role user member
+    //--------------------------------------------------role user member(HR)
     @GetMapping("/findAllByUserID")
     public ResponseEntity<?> findAllByUserID(@AuthenticationPrincipal MyUser myUser){
         Membership membership=membershipRepository.findByUserID(myUser.getID());
