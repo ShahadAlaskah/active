@@ -3,3 +3,4 @@
 # Class diagram:
 ![active drawio](https://user-images.githubusercontent.com/56152970/186577831-f0dc9a0d-45f9-4bec-9470-4962249b3c84.png)
 # Endpoints documentation:
+https://documenter.getpostman.com/view/22738417/VUqxKaM9
