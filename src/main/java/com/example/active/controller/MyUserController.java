@@ -17,11 +17,11 @@ import javax.validation.Valid;
 public class MyUserController {
     private final MyUserService myUserService;
     //--------------------------------------------------role non
-//    @GetMapping("/get")
-//    public ResponseEntity<List<MyUser>> getUsers(){
-//        List<MyUser> usersList =myUserService.getUsers();
-//        return ResponseEntity.status(200).body(usersList);
-//    }
+    @GetMapping("/logIn")
+    public ResponseEntity<ApiResponse> logIn(){
+        //List<MyUser> usersList =myUserService.getUsers();
+        return ResponseEntity.status(200).body(new ApiResponse("Welcome back",200));
+    }
     //--------------------------------------------------role user
     @PostMapping("/register")
     public ResponseEntity<ApiResponse> register(@RequestBody @Valid MyUser myUser){
