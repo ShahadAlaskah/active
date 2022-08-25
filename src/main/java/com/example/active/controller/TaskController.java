@@ -38,7 +38,7 @@ public class TaskController {
             }
         }
         taskService.addTask(task);
-        return ResponseEntity.status(200).body(new ApiResponse("user added",200));
+        return ResponseEntity.status(200).body(new ApiResponse("task added",200));
     }
     //--------------------------------------------------role member(Leader)
     @PutMapping("/update/{taskID}")
@@ -50,7 +50,7 @@ public class TaskController {
             }
         }
         taskService.updateTask(task,taskID);
-        return ResponseEntity.status(200).body(new ApiResponse("user updated",200));
+        return ResponseEntity.status(200).body(new ApiResponse("task updated",200));
     }
     //--------------------------------------------------role member(Leader)
     @DeleteMapping("/delete/{taskID}")
@@ -62,7 +62,7 @@ public class TaskController {
             }
         }
         taskService.deleteTask(taskID);
-        return ResponseEntity.status(200).body(new ApiResponse("user deleted",200));
+        return ResponseEntity.status(200).body(new ApiResponse("task deleted",200));
     }
     //--------------------------------------------------role member ممكن استبعد الليدير
     @GetMapping("/findAllByUserID")
@@ -88,14 +88,14 @@ public class TaskController {
     public ResponseEntity<ApiResponse> reject(@PathVariable Integer taskID, @AuthenticationPrincipal MyUser myUser){
 
         taskService.reject(taskID,myUser);
-        return ResponseEntity.status(200).body(new ApiResponse("reject",200));
+        return ResponseEntity.status(200).body(new ApiResponse("reject task",200));
     }
     //--------------------------------------------------role member
     @PutMapping("/Completed/{taskID}")
     public ResponseEntity<ApiResponse> completed(@PathVariable Integer taskID, @AuthenticationPrincipal MyUser myUser){
 
         taskService.completed(taskID,myUser);
-        return ResponseEntity.status(200).body(new ApiResponse("completed",200));
+        return ResponseEntity.status(200).body(new ApiResponse("complete task",200));
     }
 
 

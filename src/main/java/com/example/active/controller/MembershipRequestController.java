@@ -32,19 +32,19 @@ public class MembershipRequestController {
     @PostMapping("/add")
     public ResponseEntity<ApiResponse> addMembershipRequest(@RequestBody @Valid MembershipRequest membershipRequest){
         membershipRequestService.addMembershipRequest(membershipRequest);
-        return ResponseEntity.status(200).body(new ApiResponse("user added",200));
+        return ResponseEntity.status(200).body(new ApiResponse("Membership Request added",200));
     }
     //--------------------------------------------------role user
     @PutMapping("/update/{membershipRequestID}")
     public ResponseEntity<ApiResponse> updateMembershipRequest(@RequestBody @Valid MembershipRequest membershipRequest,@PathVariable Integer membershipRequestID){
         membershipRequestService.updateMembershipRequest(membershipRequest,membershipRequestID);
-        return ResponseEntity.status(200).body(new ApiResponse("user updated",200));
+        return ResponseEntity.status(200).body(new ApiResponse("Membership Request updated",200));
     }
     //--------------------------------------------------role user
     @DeleteMapping("/delete/{membershipRequestID}")
     public ResponseEntity<ApiResponse> deleteMembershipRequest(@PathVariable Integer membershipRequestID){
         membershipRequestService.deleteMembershipRequest(membershipRequestID);
-        return ResponseEntity.status(200).body(new ApiResponse("user deleted",200));
+        return ResponseEntity.status(200).body(new ApiResponse("Membership Request deleted",200));
     }
     //--------------------------------------------------role member(HR)
     @GetMapping("/findAllByClubIDAndStatus")
@@ -80,7 +80,7 @@ public class MembershipRequestController {
             }
         }
         membershipRequestService.rejectMembershipRequest(membershipRequestID,myUser);
-        return ResponseEntity.status(200).body(new ApiResponse("rejectMembershipRequest",200));
+        return ResponseEntity.status(200).body(new ApiResponse("reject Membership Request",200));
     }
     //--------------------------------------------------role member(HR)
     @PutMapping("/acceptMembershipRequest/{membershipRequestID}")
@@ -93,6 +93,6 @@ public class MembershipRequestController {
             }
         }
         membershipRequestService.acceptMembershipRequest(membershipRequestID,myUser);
-        return ResponseEntity.status(200).body(new ApiResponse("acceptMembershipRequest",200));
+        return ResponseEntity.status(200).body(new ApiResponse("accept Membership Request",200));
     }
 }

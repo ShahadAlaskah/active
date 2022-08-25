@@ -27,19 +27,19 @@ public class PermitsController {
     @PostMapping("/add")
     public ResponseEntity<ApiResponse> addPermits(@RequestBody @Valid Permits permits){
         permitsService.addPermits(permits);
-        return ResponseEntity.status(200).body(new ApiResponse("user added",200));
+        return ResponseEntity.status(200).body(new ApiResponse("permits added",200));
     }
     //--------------------------------------------------role member
     @PutMapping("/update/{permitsID}")
     public ResponseEntity<ApiResponse> updatePermits(@RequestBody @Valid Permits permits,@PathVariable Integer permitsID){
         permitsService.updatePermits(permits,permitsID);
-        return ResponseEntity.status(200).body(new ApiResponse("user updated",200));
+        return ResponseEntity.status(200).body(new ApiResponse("permits updated",200));
     }
     //--------------------------------------------------role member
     @DeleteMapping("/delete/{permitsID}")
     public ResponseEntity<ApiResponse> deletePermits(@PathVariable Integer permitsID){
         permitsService.deletePermits(permitsID);
-        return ResponseEntity.status(200).body(new ApiResponse("user deleted",200));
+        return ResponseEntity.status(200).body(new ApiResponse("permits deleted",200));
     }
     //--------------------------------------------------role member(لجنه التصاريح)
 //    @PutMapping("/update/{permitsID}")
